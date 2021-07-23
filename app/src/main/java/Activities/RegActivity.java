@@ -52,7 +52,10 @@ public class RegActivity extends AppCompatActivity {
                 password = passwordEt.getText().toString();
                 if (isValid(name, location, group, password, contact)) {
                     register(name, location, group, password, contact);
+                    System.out.println("ab");
+                    startActivity(new Intent(RegActivity.this, MainActivity.class));
                 }
+
             }
         });
 
