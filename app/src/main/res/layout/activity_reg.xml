@@ -12,86 +12,76 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <EditText
+            android:id="@+id/name"
             android:textSize="20sp"
-            android:textStyle="bold"
+
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:width="120dp"
+            android:height="50dp"
             android:textColor="@color/black"
-            android:padding="10dp"
-            android:text="Please Register to donate blood"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
-
-
-            <EditText
-                android:id="@+id/name"
-                android:textSize="20sp"
-
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:width="120dp"
-                android:height="50dp"
-                android:textColor="@color/black"
-                android:hint="name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+            android:hint="name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
 
-            <EditText
-                android:id="@+id/contact"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:width="120dp"
-                android:height="50dp"
-                android:hint="contact Number"
-                android:inputType="number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/contact"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:width="120dp"
+            android:height="50dp"
+            android:hint="contact Number"
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
-            <EditText
-                android:id="@+id/group"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:width="120dp"
-                android:height="50dp"
-                android:hint="Blood Group"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/group"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:width="120dp"
+            android:height="50dp"
+            android:hint="Blood Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/location"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:width="120dp"
-                android:height="50dp"
-                android:hint="Location"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/location"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:width="120dp"
+            android:height="50dp"
+            android:hint="Location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-            <EditText
-                android:id="@+id/password"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:width="120dp"
-                android:height="50dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/password"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:width="120dp"
+            android:height="50dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <Button
             android:text="Submit"
@@ -104,6 +94,9 @@
             android:layout_margin="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+
+
     </LinearLayout>
 
 </ScrollView>

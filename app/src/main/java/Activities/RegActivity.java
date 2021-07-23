@@ -83,8 +83,8 @@ public class RegActivity extends AppCompatActivity {
         } else if (!validBloodGroups.contains(group)) {
             showMessage("Blood group invalid choose from " + validBloodGroups);
             return false;
-        } else if (contact.length() != 10) {
-            showMessage("Invalid mobile number, number should be of 10 digits");
+        } else if (contact.length() != 11) {
+            showMessage("Invalid mobile number, number should be of 11 digits");
             return false;
         } else if (password.isEmpty()) {
             showMessage("Password is required");
