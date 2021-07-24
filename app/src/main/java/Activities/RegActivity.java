@@ -100,7 +100,7 @@ public class RegActivity extends AppCompatActivity {
 
     private void register(final String name, final String location, final String group, final String password,
                           final String contact) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "", new Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://sadly007.000webhostapp.com/register.php", new Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if(response.equals("Success")){
@@ -127,7 +127,7 @@ public class RegActivity extends AppCompatActivity {
                 params.put("location", location);
                 params.put("blood_group", group);
                 params.put("password", password);
-                params.put("number", contact);
+                params.put("contact", contact);
                 return params;
             }
         };
