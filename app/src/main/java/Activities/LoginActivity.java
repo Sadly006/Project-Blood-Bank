@@ -2,7 +2,6 @@ package Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,15 +26,15 @@ import java.util.Map;
 import Utils.singleton;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText contactEt, passwordEt;
-    private Button submitButton;
+    EditText contactEt, passwordEt;
+    Button submitButton;
     TextView signUpText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        contactEt = findViewById(R.id.contact);
+        contactEt = findViewById(R.id.number);
         passwordEt = findViewById(R.id.password);
         submitButton = findViewById(R.id.submit_button);
         signUpText = findViewById(R.id.sign_up_text);
@@ -48,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                contactEt.setError(null);
+                passwordEt.setError(null);
                 String contact, password;
                 contact = contactEt.getText().toString();
                 password = passwordEt.getText().toString();
@@ -78,16 +79,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(final String contact, final String password) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "", new Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://sadly007.000webhostapp.com/login.php", new Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (!response.equals("Invalid Credentials")) {
+                if (response.equals("Success")) {
                     Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
-                            .putString("contact", contact).apply();
-                    PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
-                            .putString("location", response).apply();
                     LoginActivity.this.finish();
                 } else {
                     Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
@@ -96,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
         }, new ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(LoginActivity.this, "Something went wrong:(", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
                 Log.d("VOLLEY", error.getMessage());
             }
         }) {
