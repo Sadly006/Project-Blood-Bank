@@ -59,7 +59,7 @@ public class SearchActivity extends AppCompatActivity {
         }, new ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(SearchActivity.this, "Something went wrong:(", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SearchActivity.this, "Something went wrong :(", Toast.LENGTH_SHORT).show();
                 Log.d("VOLLEY", Objects.requireNonNull(error.getMessage()));
             }
         }) {

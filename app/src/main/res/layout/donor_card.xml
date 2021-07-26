@@ -33,7 +33,7 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/message"
+                android:id="@+id/donorInfo"
                 android:padding="8dp"
                 app:height="200dp"
                 android:ellipsize="end"
