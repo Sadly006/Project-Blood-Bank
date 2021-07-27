@@ -2,4 +2,5 @@
     <string name="app_name">Blood Bucket</string>
     <string name="sign_up"><u>Sign Up</u></string>
     <string name="search_menu">Find help within your reach!</string>
+    <string name="search_result">Donor List On Your Area</string>
 </resources>
