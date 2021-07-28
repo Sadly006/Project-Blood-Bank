@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class SearchActivity extends AppCompatActivity {
         groupEt = findViewById(R.id.chooseGroup);
         locationEt = findViewById(R.id.chooseLocation);
         Button submit_button = findViewById(R.id.submit_button);
-        submit_button.setOnClickListener(new View.OnClickListener() {
+        submit_button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 String bloodGroup = groupEt.getText().toString();
@@ -51,10 +52,10 @@ public class SearchActivity extends AppCompatActivity {
 
     private void searchResults(final String bloodGroup, final String location) {
         StringRequest stringRequest = new StringRequest(
-                Request.Method.POST, "", new Listener<String>() {
+                Request.Method.POST, "https://sadly007.000webhostapp.com/search.php", new Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Intent intent = new Intent(SearchActivity.this, SearchResult.class);
+                startActivity(new Intent(SearchActivity.this, SearchResult.class));
             }
         }, new ErrorListener() {
             @Override
@@ -86,7 +87,7 @@ public class SearchActivity extends AppCompatActivity {
         validBloodGroups.add("O+");
         validBloodGroups.add("O-");
         if(!validBloodGroups.contains(bloodGroup)){
-            showMsg("Blood group invalid choose from " + validBloodGroups);
+            showMsg("Invalid blood group! Choose from " + validBloodGroups);
             return false;
         }else if(location.isEmpty()){
             showMsg("Enter Location");
