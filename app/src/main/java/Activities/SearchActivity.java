@@ -50,12 +50,16 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-    private void searchResults(final String bloodGroup, final String location) {
+    private void searchResults(final String chooseGroup, final String chooseLocation) {
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST, "https://sadly007.000webhostapp.com/search.php", new Listener<String>() {
             @Override
             public void onResponse(String response) {
-                startActivity(new Intent(SearchActivity.this, SearchResult.class));
+                Intent intent = new Intent(SearchActivity.this, SearchResult.class);
+                intent.putExtra("chooseLocation", chooseLocation);
+                intent.putExtra("chooseGroup", chooseGroup);
+                intent.putExtra("json", response);
+                startActivity(intent);
             }
         }, new ErrorListener() {
             @Override
@@ -67,8 +71,8 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("chooseLocation", location);
-                params.put("chooseGroup", bloodGroup);
+                params.put("chooseLocation", chooseLocation);
+                params.put("chooseGroup", chooseGroup);
                 return params;
             }
         };
