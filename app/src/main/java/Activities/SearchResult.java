@@ -39,9 +39,7 @@ public class SearchResult extends AppCompatActivity {
 
         Type type = new TypeToken<List<Donor>>() {}.getType();
         List<Donor> dataModels = gson.fromJson(json, type);
-        if (dataModels != null && dataModels.isEmpty()) {
-            //heading.setText("No results");
-        }else if(dataModels!=null){
+        if (dataModels != null) {
             donorList.addAll(dataModels);
         }
 

@@ -1,6 +1,9 @@
 package Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.PermissionChecker;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbank.R;
@@ -17,6 +21,8 @@ import com.example.bloodbank.R;
 import java.util.List;
 
 import DataModels.Donor;
+
+import static android.Manifest.permission.CALL_PHONE;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
@@ -47,7 +53,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     holder.callButton.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View view) {
-
+        if (PermissionChecker.checkSelfPermission(context, CALL_PHONE)
+                == PermissionChecker.PERMISSION_GRANTED) {
+          Intent intent = new Intent(Intent.ACTION_CALL);
+          intent.setData(Uri.parse("tel:" + dataSet.get(position).getContact()));
+          context.startActivity(intent);
+        } else {
+          ((Activity) context).requestPermissions(new String[]{CALL_PHONE}, 401);
+        }
       }
     });
 

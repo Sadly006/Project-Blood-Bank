@@ -1,6 +1,9 @@
 package Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.PermissionChecker;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodbank.R;
@@ -15,6 +19,8 @@ import com.example.bloodbank.R;
 import java.util.List;
 
 import DataModels.RequestDataModel;
+
+import static android.Manifest.permission.CALL_PHONE;
 
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHolder> {
 
@@ -37,16 +43,27 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        holder.text.setText(dataSet.get(position).getMessage());
-        holder.call_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        String str = "Name: " + dataSet.get(position).getName();
+        //str += "\nContact: " + dataSet.get(position).getContact();
+        str += "\nBloodGroup: " + dataSet.get(position).getBloodGroup();
+        str += "\nLocation: " + dataSet.get(position).getLocation();
+        holder.text.setText(str);
 
-            }
+        holder.call_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (PermissionChecker.checkSelfPermission(context, CALL_PHONE)
+                            == PermissionChecker.PERMISSION_GRANTED) {
+                        Intent intent = new Intent(Intent.ACTION_CALL);
+                        intent.setData(Uri.parse("tel:" + dataSet.get(position).getContact()));
+                        context.startActivity(intent);
+                    } else {
+                        ((Activity) context).requestPermissions(new String[]{CALL_PHONE}, 401);
+                    }
+                }
         });
 
     }
-
 
     @Override
     public int getItemCount() {
@@ -57,14 +74,13 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView text;
-        ImageView imageView, call_button, share_button;
+        ImageView imageView, call_button;
 
         ViewHolder(final View itemView) {
             super(itemView);
             text = itemView.findViewById(R.id.donorInfo);
             imageView = itemView.findViewById(R.id.image);
             call_button = itemView.findViewById(R.id.call_button);
-            share_button = itemView.findViewById(R.id.share_button);
         }
 
     }
